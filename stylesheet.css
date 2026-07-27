@@ -14,10 +14,17 @@
 .child-div {
     aspect-ratio: 1 / 1;
     border: 1px solid black;
-    flex: 0 0 calc(100% / 16);
+    /* flex: 0 0 calc(100% / 16); */ /* i've set flex inside js*/
 }
 
 .hover {
     background-color:darkgrey;
+}
+
+.clear-button {
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 50%;
 }
 /* child divs need to take up all the space */
