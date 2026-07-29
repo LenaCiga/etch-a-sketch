@@ -19,17 +19,39 @@ function createDivs(count) {
 
 createDivs(16);
 
-divParent.addEventListener("mouseover", (e) => {
-    if (e.target.matches('.child-div')) { // Better than contains
+// Only this is needed for the task
+// divParent.addEventListener("mouseover", (e) => {
+//     if (e.target.matches('.child-div')) { //
+//         e.target.classList.add('hover');
+//     }
+// });
+
+// Trying this > while you're clicking, you're drawing, more like a regular MS Paint behavior:
+
+let isDrawing = false;
+
+divParent.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    isDrawing = true;
+    if (e.target.matches('.child-div')) { // this check for matching is so it only bubbles on child divs not all the way past them, i get a mess if this is gone
         e.target.classList.add('hover');
     }
 });
 
-// divParent.addEventListener("mouseout", (e) => {
-//     if (e.target.matches('.child-div')) {
-//         e.target.classList.remove('hover');
-//     }
-// });  //if i want the regular hover I include this too
+divParent.addEventListener("mousemove", (e) => {
+    if (isDrawing) {
+        if (e.target.matches('.child-div')) {
+            e.target.classList.add('hover');
+        }
+    }
+});
+
+divParent.addEventListener("mouseup", (e) => {
+    isDrawing = false;
+    // if (e.target.matches('.child-div')) { // Better than contains
+        // e.target.classList.remove('hover'); //I don't need to remove the class
+    // }
+});
 
 const bttn = document.createElement("button");
 bttn.className = "clear-button";
