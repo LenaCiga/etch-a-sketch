@@ -28,20 +28,30 @@ createDivs(16);
 
 // Trying this > while you're clicking, you're drawing, more like a regular MS Paint behavior:
 
+// Bonus task 1 - Random color:
+function randomColor(e) {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  e.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+}
+
 let isDrawing = false;
 
 divParent.addEventListener("mousedown", (e) => {
     e.preventDefault();
     isDrawing = true;
     if (e.target.matches('.child-div')) { // this check for matching is so it only bubbles on child divs not all the way past them, i get a mess if this is gone
-        e.target.classList.add('hover');
+        // e.target.classList.add('hover');
+        randomColor(e.target);
     }
 });
 
 divParent.addEventListener("mousemove", (e) => {
     if (isDrawing) {
         if (e.target.matches('.child-div')) {
-            e.target.classList.add('hover');
+            // e.target.classList.add('hover');
+            randomColor(e.target);
         }
     }
 });
